@@ -1,0 +1,89 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.reg_member.Reg7QuestionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/margin_standar"
+        android:paddingStart="@dimen/margin_standar"
+        android:paddingTop="@dimen/margin_standar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/EditTextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:text="Choose a security question" />
+
+            <TextView
+                style="@style/EditTextTitleSmallBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="(it myWill be required to recover your PIN)" />
+
+            <Spinner
+                android:id="@+id/spinner_question"
+                style="@style/SpinnerUnderlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:theme="@style/ThemeSpinner" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/EditTextTitleSmallBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Answer"
+                android:textAlignment="textStart" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etl_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/et_answer"
+                    style="@style/EditTextStandard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Security Question" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_next7"
+                style="@style/ButtonStandard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Next" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

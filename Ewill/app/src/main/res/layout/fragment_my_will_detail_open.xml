@@ -1,0 +1,140 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.will.OpenWillDetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_back"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="@dimen/margin_standar_side"
+        android:paddingRight="@dimen/margin_standar_side"
+        android:paddingTop="@dimen/margin_standar_top">
+
+        <TextView
+            android:id="@+id/tv_reg_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Registration date: 10 Oct 2017"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lay_will_data"
+            android:layout_below="@id/tv_reg_date"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TitleSmall"
+                android:text="Full Name" />
+
+            <TextView
+                android:id="@+id/tv_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Anna"
+                android:textColor="@color/semi_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                style="@style/TitleSmall"
+                android:text="Will Name" />
+
+            <TextView
+                android:id="@+id/tv_will_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Will's Name 1"
+                android:textColor="@color/semi_black"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                style="@style/TitleSmall"
+                android:text="Will Location" />
+
+            <TextView
+                android:id="@+id/tv_will_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jl Jend. Sudirman kav 52-53 SCBD Lot 9, Equity Tower lt25 suite H"
+                android:textColor="@color/semi_black"
+                android:textSize="12sp" />
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map_image"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                tools:context=".MapsActivity" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_below="@id/lay_will_data"
+            android:id="@+id/div_1"/>
+
+        <LinearLayout
+            android:id="@+id/lay_will_data2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/div_1"
+            android:layout_marginBottom="6dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/lay_will_doc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/tv_will_doc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Will's Document"
+                    android:textColor="@color/semi_black" />
+
+                <View
+                    style="@style/Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_will_doc"
+                    android:layout_marginBottom="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text=">" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

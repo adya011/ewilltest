@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.home.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_standar"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_mywill"
+            android:layout_marginTop="@dimen/margin_button_top"
+            android:layout_marginBottom="@dimen/margin_button_bot"
+            android:layout_marginStart="@dimen/margin_standar_side"
+            android:layout_marginEnd="@dimen/margin_standar_side"
+            android:text="My Will"
+            style="@style/ButtonStandard"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_openwill"
+            android:layout_marginTop="@dimen/margin_button_top"
+            android:layout_marginBottom="@dimen/margin_button_bot"
+            android:layout_marginStart="@dimen/margin_standar_side"
+            android:layout_marginEnd="@dimen/margin_standar_side"
+            android:text="Open Will"
+            style="@style/ButtonStandard"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_searchwill"
+            android:layout_marginTop="@dimen/margin_button_top"
+            android:layout_marginBottom="@dimen/margin_button_bot"
+            android:layout_marginStart="@dimen/margin_standar_side"
+            android:layout_marginEnd="@dimen/margin_standar_side"
+            android:text="Search Will"
+            style="@style/ButtonStandard"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

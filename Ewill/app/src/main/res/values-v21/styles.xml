@@ -1,0 +1,269 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextViewMenu">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="Numpad">
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="NumpadPin">
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="etNumpad">
+        <item name="android:layout_width">40sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:inputType">none</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:background">@drawable/bg_edittext_round_white</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="EditTextTitle">
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textSize">@dimen/edit_text_title_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextViewSubTitle">
+        <item name="android:textColor">@color/edit_text_title</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:textSize">@dimen/edit_text_title_medium_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextViewEtTitle">
+        <item name="android:textColor">@color/edit_text_title</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:textSize">@dimen/edit_text_title_small_size</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextViewUserName">
+        <item name="android:textColor">@color/edit_text_title</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="EditTextTitleSmallBold">
+        <item name="android:textColor">@color/edit_text_title</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:textSize">@dimen/edit_text_title_small_size</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HorizontalLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/edit_text</item>
+    </style>
+
+    <style name="EditTextStandard">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:paddingTop">@dimen/edit_text_padding_top</item>
+        <item name="android:paddingBottom">@dimen/edit_text_padding_bottom</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">@color/edit_text_hint</item>
+    </style>
+
+    <style name="EditTextLogin2">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:paddingTop">@dimen/edit_text_login_padding_top</item>
+        <item name="android:paddingBottom">@dimen/edit_text_login_padding_bottom</item>
+        <item name="android:textColorHint">@color/edit_text_login</item>
+        <item name="android:textColor">@color/edit_text_login</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+        <item name="android:backgroundTint">@color/edit_text_login</item>
+        <item name="colorControlNormal">@color/edit_text_login</item>
+        <item name="colorControlActivated">@color/edit_text_login</item>
+        <item name="colorControlHighlight">@color/edit_text_login</item>
+    </style>
+
+    <style name="EditTextLogin2Title">
+        <item name="android:textColorHint">@color/edit_text_login</item>
+        <item name="android:textColor">@color/edit_text_login</item>
+        <item name="android:backgroundTint">@color/edit_text_login</item>
+        <item name="colorControlNormal">@color/edit_text_login</item>
+        <item name="colorControlActivated">@color/edit_text_login</item>
+        <item name="colorControlHighlight">@color/edit_text_login</item>
+    </style>
+
+    <style name="TextViewContent">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:paddingTop">@dimen/edit_text_padding_top</item>
+        <item name="android:paddingBottom">@dimen/edit_text_padding_bottom</item>
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textSize">@dimen/text_view_size</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="TextViewContent2">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:layout_marginBottom">@dimen/edit_text_padding_bottom2</item>
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textSize">@dimen/text_view_size</item>
+    </style>
+
+    <style name="EditTextLogin">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:paddingTop">@dimen/edit_text_padding_top</item>
+        <item name="android:paddingBottom">@dimen/edit_text_padding_top</item>
+        <item name="android:paddingLeft">@dimen/edit_text_padding_rightleft</item>
+        <item name="android:paddingRight">@dimen/edit_text_padding_rightleft</item>
+        <item name="android:textColor">@color/edit_text_login</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+    </style>
+
+    <style name="TitleBig">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:paddingTop">@dimen/edit_text_padding_top</item>
+        <item name="android:paddingBottom">@dimen/edit_text_padding_bottom</item>
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textSize">@dimen/title_big_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="CheckboxStandard">
+        <!--<item name="android:textStyle">italic</item>-->
+        <item name="android:paddingTop">@dimen/edit_text_padding_top</item>
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+    </style>
+
+    <style name="SpinnerStandard">
+
+        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
+        <!--<item name="android:background">@drawable/spinner_text</item>-->
+        <!--<item name="android:background">@drawable/abc_spinner_textfield_background_material</item>-->
+    </style>
+
+    <style name="spinnerItemStyle">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:textColor">@color/edit_text_hint</item>
+        <item name="android:textSize">@dimen/edit_text_size</item>
+    </style>
+
+    <style name="ButtonStandard">
+        <item name="android:background">@drawable/radius_btn</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="ButtonBlue">
+        <item name="android:background">@drawable/radius_btn_blue</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="ButtonWhite">
+        <item name="android:background">@drawable/radius_btn_white</item>
+        <item name="android:textColor">@color/button_standard</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="ThemeSpinner">
+        <item name="colorControlNormal">@color/edit_text_hint</item>
+        <item name="colorAccent">@color/edit_text_title</item>
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+
+    <style name="SpinnerUnderlined">
+        <item name="android:background">@drawable/abc_spinner_textfield_background_material</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingTop">@dimen/edit_text_padding_top</item>
+        <item name="android:paddingBottom">@dimen/edit_text_padding_bottom</item>
+    </style>
+
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#fff</item>
+        <item name="colorControlActivated">#fff</item>
+        <item name="colorControlHighlight">#fff</item>
+    </style>
+
+
+    <!-- DIALOG -->
+
+    <style name="PauseDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowTitleStyle">@style/PauseDialogTitle</item>
+    </style>
+
+    <style name="PauseDialogTitle" parent="@android:style/TextAppearance.DialogWindowTitle">
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="DialogWindowTitle">
+        <item name="android:maxLines">1</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.DialogWindowTitle</item>
+    </style>
+
+
+</resources>

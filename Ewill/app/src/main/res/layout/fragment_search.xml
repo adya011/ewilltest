@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.search.SearchFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:id="@+id/lay_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sch_search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/colorPrimary"
+                android:hint="Search Name"
+                android:imeOptions="actionSearch"
+                android:inputType="text"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/sch_search_bar">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

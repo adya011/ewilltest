@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.reg_member_up_maker.Reg6PackageFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/margin_standar_top"
+            android:paddingRight="@dimen/margin_standar_side"
+            android:paddingLeft="@dimen/margin_standar_side">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etl_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="14dp"
+                android:paddingTop="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="Package"
+                    android:textSize="13sp" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/sp_package"
+                    style="@style/SpinnerUnderlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Gender" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:layout_marginTop="26dp"
+            android:text="Next" />
+
+    </RelativeLayout>
+
+</FrameLayout>

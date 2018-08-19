@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        style="@style/Divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/lay_main"
+        android:layout_alignParentTop="true"
+        android:layout_below="@id/lay_main"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp" />
+
+    <RelativeLayout
+        android:id="@+id/lay_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_standar_side">
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="email@gmail.com"
+            android:textColor="#424242"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <View
+        style="@style/Divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/lay_main"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp" />
+
+</RelativeLayout>

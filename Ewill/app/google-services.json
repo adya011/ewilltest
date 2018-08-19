@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "165585858861",
+    "firebase_url": "https://ewillonesignal.firebaseio.com",
+    "project_id": "ewillonesignal",
+    "storage_bucket": "ewillonesignal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165585858861:android:7aed2a145308aaab",
+        "android_client_info": {
+          "package_name": "com.example.nandanasamudera.ewill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165585858861-540hafemtsifuhlh2p3di3lh3vi5fgkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYZR2NgW1Ilvsckbjs8fzcbhHBjq4g_GU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165585858861:android:f68204e5f87ed4c0",
+        "android_client_info": {
+          "package_name": "com.moonlay.litewill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165585858861-540hafemtsifuhlh2p3di3lh3vi5fgkn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYZR2NgW1Ilvsckbjs8fzcbhHBjq4g_GU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

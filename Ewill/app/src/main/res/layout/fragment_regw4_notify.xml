@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.reg_will.Regw4NotifyFragment">
+
+    <RelativeLayout
+        android:id="@+id/lay_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_next"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="@dimen/margin_standar_side"
+                android:paddingRight="@dimen/margin_standar_side"
+                android:paddingTop="@dimen/margin_standar_top">
+
+                <TextView
+                    style="@style/TextViewSubTitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Who can view this myWill?"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_notify"
+                    style="@style/ButtonSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Notify People" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/Divider"
+                android:layout_below="@+id/lay_item"
+                android:layout_marginBottom="0dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:text="Next" />
+    </RelativeLayout>
+
+</FrameLayout>

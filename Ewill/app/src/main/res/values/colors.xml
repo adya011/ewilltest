@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#9b1919</color>-->
+    <color name="colorPrimary">#be1616</color>
+    <color name="colorPrimaryDark">#7f1111</color>
+    <color name="colorAccent">#be1616</color>
+
+    <color name="divider">#e1e1e1</color>
+    <color name="edit_text">#5c5c5c</color>
+    <color name="edit_text_disabled">#b6b6b6</color>
+    <color name="edit_text_login">#ffffff</color>
+    <color name="edit_text_title">#494949</color>
+    <color name="edit_text_hint">#c1c1c1</color>
+    <color name="button_standard">#b71b1c</color>
+    <color name="button_standard_pressed">#7a1213</color>
+    <color name="button_standard_disabled">#d7d7d7</color>
+    <color name="button_standard_disabled_text">#a8acb2</color>
+    <color name="background_red">#af1423</color>
+    <color name="red_fade">#d9949b</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="semi_black">#1b1b1b</color>
+    <color name="blue_sky">#00bfff</color>
+    <color name="blue">#0051ff</color>
+</resources>

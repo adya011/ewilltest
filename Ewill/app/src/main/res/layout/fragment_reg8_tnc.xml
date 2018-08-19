@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--tools:context="com.example.nandanasamudera.ewill.fragments.register.Reg8TncFragment">-->
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/margin_standar"
+        android:paddingStart="@dimen/margin_standar"
+        android:paddingTop="@dimen/margin_standar"
+        android:weightSum="100">-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:paddingTop="@dimen/margin_standar_top">
+
+        <LinearLayout
+            android:id="@+id/policy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@id/lay_button"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextViewContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lorem_ipsum" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="12dp"
+            android:layout_weight="75"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/cb_agree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_standar_side"
+                android:layout_marginRight="@dimen/margin_standar_side"
+                android:layout_above="@+id/button_next8"
+                android:text="I agree to the Terms and Conditions" />
+
+            <Button
+                android:id="@+id/button_next8"
+                style="@style/ButtonStandard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_standar_side"
+                android:layout_marginRight="@dimen/margin_standar_side"
+                android:layout_alignParentBottom="true"
+                android:text="Next" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

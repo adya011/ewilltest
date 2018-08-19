@@ -1,0 +1,191 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.reg_member_up_maker.Reg8PaymentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/title"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:layout_marginTop="@dimen/margin_standar_top"
+            android:text="Select Payment Method"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/divider1"
+            style="@style/Divider"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title" />
+
+        <LinearLayout
+            android:id="@+id/lay_payment_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/divider1"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/margin_standar_side"
+            android:paddingStart="@dimen/margin_standar_side">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/rad_paypal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_paypal"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/rad_paypal"
+                    android:layout_toEndOf="@+id/rad_paypal"
+                    android:layout_alignBottom="@id/rad_paypal"
+                    android:gravity="center_vertical"
+                    android:text="PayPal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_paypal"
+                    android:layout_below="@id/tv_paypal"
+                    android:text="Payment with with paypal bla bla bla bla bla bla bla bla bla" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <RadioButton
+                    android:id="@+id/rad_creditcard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_creditcard"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/rad_creditcard"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/rad_creditcard"
+                    android:text="Credit Card"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_creditcard"
+                    android:layout_below="@id/tv_creditcard"
+                    android:text="Payment with with credit card bla bla bla bla bla bla bla bla bla" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider2"
+            style="@style/Divider"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lay_payment_method" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/lay_form"
+            android:layout_below="@+id/divider2"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Credit Card No"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="0.5">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CVV Code"
+                        android:nextFocusForward="@+id/expiry"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/expiry"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="0.5">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Expiry Date"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:text="Next" />
+
+    </RelativeLayout>
+
+</FrameLayout>

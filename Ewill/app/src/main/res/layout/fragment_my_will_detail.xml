@@ -1,0 +1,205 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.will.MyWillDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:id="@+id/lay_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/lay_delete"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="0dp"
+            android:paddingLeft="@dimen/margin_standar_side"
+            android:paddingRight="@dimen/margin_standar_side"
+            android:paddingTop="@dimen/margin_standar_top">
+
+            <TextView
+                android:id="@+id/tv_will_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Will Name"
+                android:textColor="@color/semi_black"
+                android:textSize="21dp"
+                android:textStyle="bold"/>
+
+            <View
+                android:id="@+id/div_1"
+                style="@style/Divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_will_name" />
+
+            <RelativeLayout
+                android:id="@+id/lay_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/lay_will_data"
+                android:layout_below="@id/div_1">
+
+                <TextView
+                    android:id="@+id/will_address_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="6dp"
+                    android:text="Will's Address"
+                    android:textColor="@color/semi_black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_will_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/will_address_title"
+                    android:layout_marginBottom="4dp"
+                    android:text="Address will detail"
+                    android:textSize="12sp" />
+
+                <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map_image"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv_will_address"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="fitCenter"
+                    tools:context=".MapsActivity" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_will_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lay_will_doc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_will_doc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Will's Document"
+                        android:textColor="@color/semi_black" />
+
+                    <View
+                        style="@style/Divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/tv_will_doc"
+                        android:layout_marginBottom="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text=">" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_will_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lay_will_doc"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_will_share"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Share Will To"
+                        android:textColor="@color/semi_black" />
+
+                    <View
+                        style="@style/Divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/tv_will_share"
+                        android:layout_marginBottom="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text=">" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_will_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lay_will_share"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_will_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Searchable By"
+                        android:textColor="@color/semi_black" />
+
+                    <View
+                        style="@style/Divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/tv_will_search" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text=">" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="0dp"
+            android:background="#fff"
+            android:padding="0dp">
+
+            <View
+                style="@style/Divider"
+                android:layout_alignParentTop="true"
+                android:layout_margin="0dp" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="DELETE"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

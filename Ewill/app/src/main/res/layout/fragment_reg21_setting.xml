@@ -1,0 +1,200 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.reg_will.Regw5SettingFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/lay_setting_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/margin_standar_side"
+            android:paddingRight="@dimen/margin_standar_side"
+            android:paddingTop="@dimen/margin_standar_top">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tv_searchable_law"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Searchable by Law Firms"
+                    android:textColor="@color/semi_black" />
+
+                <Switch
+                    android:id="@+id/sw_lf_searchable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_searchable_law"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@id/tv_searchable_law" />
+
+                <!--<TextView
+                    android:id="@+id/tv_status_law"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_searchable_law"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="12dp"
+                    android:text="Status" />
+
+                <Switch
+                    android:id="@+id/sw_lf_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_status_law"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@id/tv_status_law" />-->
+
+                <CheckBox
+                    android:id="@+id/cb_lf_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/tv_searchable_law"
+                    android:text="Status"
+                    android:textColor="@color/semi_black" />
+
+                <CheckBox
+                    android:id="@+id/cb_lf_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/cb_lf_status"
+                    android:layout_below="@id/cb_lf_status"
+                    android:text="Location"
+                    android:textColor="@color/semi_black" />
+
+                <CheckBox
+                    android:id="@+id/cb_lf_will"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/cb_lf_status"
+                    android:layout_below="@id/cb_lf_location"
+                    android:layout_marginBottom="4dp"
+                    android:text="Will"
+                    android:textColor="@color/semi_black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tv_searchable_auth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Searchable by Public Authorities"
+                    android:textColor="@color/semi_black" />
+
+                <Switch
+                    android:id="@+id/sw_pa_searchable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_searchable_auth"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@id/tv_searchable_auth" />
+
+                <CheckBox
+                    android:id="@+id/cb_pa_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_searchable_auth"
+                    android:text="Status"
+                    android:textColor="@color/semi_black" />
+
+                <CheckBox
+                    android:id="@+id/cb_pa_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/cb_pa_status"
+                    android:layout_below="@id/cb_pa_status"
+                    android:text="Location"
+                    android:textColor="@color/semi_black"
+                    android:textColorHint="@color/semi_black" />
+
+                <CheckBox
+                    android:id="@+id/cb_pa_will"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/cb_pa_status"
+                    android:layout_below="@id/cb_pa_location"
+                    android:layout_marginBottom="4dp"
+                    android:text="Will"
+                    android:textColor="@color/semi_black" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_searchable_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Searchable by All Registered Users"
+                    android:textColor="@color/semi_black" />
+
+                <Switch
+                    android:id="@+id/sw_all_searchable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_searchable_reg"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@id/tv_searchable_reg" />
+
+                <CheckBox
+                    android:id="@+id/cb_all_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_searchable_reg"
+                    android:text="Status"
+                    android:textColor="@color/semi_black" />
+
+                <CheckBox
+                    android:id="@+id/cb_all_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/cb_all_status"
+                    android:layout_below="@id/cb_all_status"
+                    android:text="Location"
+                    android:textColor="@color/semi_black"
+                    android:textColorHint="@color/semi_black" />
+
+                <CheckBox
+                    android:id="@+id/cb_all_will"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/cb_all_status"
+                    android:layout_below="@id/cb_all_location"
+                    android:text="Will"
+                    android:textColor="@color/semi_black" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:text="Create Will" />
+
+    </RelativeLayout>
+
+</FrameLayout>

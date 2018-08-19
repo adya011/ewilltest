@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.reg_member_up_maker.Reg2ScanFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <Button
+            android:id="@+id/btn_scan"
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="0dp"
+            android:layout_above="@id/btn_skip"
+            android:text="Scan" />
+
+        <Button
+            android:id="@+id/btn_skip"
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/margin_standar_side"
+            android:layout_marginRight="@dimen/margin_standar_side"
+            android:text="Skip" />
+
+    </RelativeLayout>
+
+</FrameLayout>

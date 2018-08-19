@@ -1,0 +1,82 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moonlay.litewill.fragments.home.ContactFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_login"
+        android:orientation="vertical"
+        android:weightSum="100">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext_round_white"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext_round_white"
+            android:layout_weight="100"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="30"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="100">
+
+            <EditText
+                android:id="@+id/file"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="File 1.jpg File"
+                android:textSize="14sp"
+                android:layout_weight="50"/>
+
+            <Button
+                android:id="@+id/button_blue"
+                style="@style/ButtonBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Browse"
+                android:layout_weight="50"/>
+
+        </LinearLayout>
+
+        <Button
+            style="@style/ButtonStandard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="0dp"/>
+    </LinearLayout>
+
+</FrameLayout>

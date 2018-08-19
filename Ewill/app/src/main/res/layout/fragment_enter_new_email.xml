@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin_standar_side"
+        android:paddingTop="@dimen/margin_standar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/EditTextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_enter_email"
+                android:text="Enter new email address" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_enter_email"
+                style="@style/EditTextStandard"
+                android:inputType="number"
+                android:hint="Enter your email"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/error_message"
+                android:textColor="@color/button_standard"
+                android:textAlignment="center"/>
+
+            <Button
+                android:id="@+id/btn_next_enter_new_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Next"
+                style="@style/ButtonStandard"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
