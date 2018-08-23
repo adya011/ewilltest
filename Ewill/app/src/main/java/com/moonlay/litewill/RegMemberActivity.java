@@ -65,27 +65,6 @@ public class RegMemberActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        /*FragmentManager fm = getSupportFragmentManager();
-
-        if (regStatus != null) {
-            if ((regStatus.equals(Constants.REG_WAIT_VER_EMAIL) && fm.getBackStackEntryCount() == 1)
-            || (regStatus.equals(Constants.REG_WAIT_VER_PHONE) && fm.getBackStackEntryCount() == 1)) {
-                fm.popBackStack(null, fm.POP_BACK_STACK_INCLUSIVE);
-
-                sharedPrefManager.removeSP(Constants.REG_STATUS);
-                sharedPrefManager.removeSP(Constants.REG_USERNAME);
-
-            }
-        } else {
-            if (fm.getBackStackEntryCount() > 1) {
-                fm.popBackStack();
-            } else {
-                finish();
-            }
-        }
-
-        return super.onNavigateUp();*/
-
         FragmentManager fm = getSupportFragmentManager();
         if (regStatus != null && fm.getBackStackEntryCount() <= 1) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -100,8 +79,6 @@ public class RegMemberActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
-
         FragmentManager fm = getSupportFragmentManager();
         if (regStatus != null && fm.getBackStackEntryCount() <= 1) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -111,22 +88,6 @@ public class RegMemberActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-
-        /*FragmentManager fm = getSupportFragmentManager();
-        if ((regStatus != null && regStatus.equals(Constants.REG_WAIT_VER_EMAIL) && fm.getBackStackEntryCount() == 1) || (regStatus.equals(Constants.REG_WAIT_VER_PHONE) && fm.getBackStackEntryCount() == 1)) {
-            fm.popBackStack(null, fm.POP_BACK_STACK_INCLUSIVE);
-
-            sharedPrefManager.removeSP(Constants.REG_STATUS);
-            sharedPrefManager.removeSP(Constants.REG_USERNAME);
-            Log.d(TAG, Constants.REG_STATUS + " and " + Constants.REG_USERNAME + " removed");
-
-        } else {
-            if (fm.getBackStackEntryCount() > 1) {
-                fm.popBackStack();
-            } else {
-                finish();
-            }
-        }*/
     }
 
     public void setActionBarTitle(String title) {

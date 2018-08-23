@@ -13,8 +13,9 @@ public class UpgradeMaker {
     private String gender;
     private String address;
     private boolean isSingaporean;
+    private String productCode;
 
-    public UpgradeMaker(String passportNo, String fullName, String dateOfBirth, String placeOfBirth, String nationality, String gender, String address, boolean isSingaporean) {
+    public UpgradeMaker(String passportNo, String fullName, String dateOfBirth, String placeOfBirth, String nationality, String gender, String address, boolean isSingaporean, String productCode) {
         this.passportNo = passportNo;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -23,6 +24,8 @@ public class UpgradeMaker {
         this.gender = gender;
         this.address = address;
         this.isSingaporean = isSingaporean;
+        this.productCode = productCode;
+
     }
 
     public String getPassportNo() {
@@ -87,5 +90,13 @@ public class UpgradeMaker {
 
     public void setSingaporean(boolean singaporean) {
         isSingaporean = singaporean;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 }

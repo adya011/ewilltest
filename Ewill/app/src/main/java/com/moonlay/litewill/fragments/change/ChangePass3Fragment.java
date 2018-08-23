@@ -35,7 +35,7 @@ public class ChangePass3Fragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change Password");
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change Password");
         initView();
     }
 

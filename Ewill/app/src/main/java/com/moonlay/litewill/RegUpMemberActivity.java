@@ -21,6 +21,7 @@ public class RegUpMemberActivity extends AppCompatActivity {
     public String address;
     public boolean isSingaporean;
     public int subscribePackage;
+    public String productCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

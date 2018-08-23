@@ -41,7 +41,7 @@
                 android:id="@+id/tv_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Anna"
+                android:text="John Doe"
                 android:textColor="@color/semi_black"
                 android:textSize="16sp" />
 

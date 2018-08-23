@@ -60,8 +60,8 @@ public class RecoverPin1Fragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address");
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address");
+        //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sharedPrefManager = new SharedPrefManager(getContext());
         loginToken = sharedPrefManager.getLoginToken();
         initView();

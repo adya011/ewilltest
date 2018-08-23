@@ -1,20 +1,28 @@
 package com.moonlay.litewill.fragments.home;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.moonlay.litewill.DashboardActivity;
+import com.moonlay.litewill.OpenWillActivity;
 import com.moonlay.litewill.R;
 import com.moonlay.litewill.RegUpMemberActivity;
 import com.moonlay.litewill.SearchActivity;
@@ -24,8 +32,12 @@ import com.moonlay.litewill.fragments.will.NoWillNotifyFragment;
 import com.moonlay.litewill.fragments.will.OpenWillsFragment;
 import com.moonlay.litewill.utility.SharedPrefManager;
 
+import org.w3c.dom.Text;
+
 /**
  * A simple {@link Fragment} subclass.
+ * <p>
+ * DashboardActivity
  */
 public class HomeFragment extends BaseFragment {
     Button btnMyWill, btnSearchWill, btnOpenWill;
@@ -46,6 +58,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -64,26 +77,33 @@ public class HomeFragment extends BaseFragment {
         btnSearchWill = mView.findViewById(R.id.btn_searchwill);
         btnOpenWill = mView.findViewById(R.id.btn_openwill);
 
-        ((DashboardActivity) getActivity()).setActionBarTitle("Home");
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        //((DashboardActivity) getActivity()).setActionBarTitle("Home");
+        //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         initView();
     }
-
-    /*private void testNoWill(){
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_tab1_layout, new NoWillNotifyFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }*/
 
     private void initView() {
         sharedPrefManager = new SharedPrefManager(getContext());
         userMemberType = sharedPrefManager.getUserMemberType();
         Log.d(TAG, "init. User member type: " + userMemberType);
+        Log.d(TAG, "not count: " + sharedPrefManager.getNotificationCount());
 
         btnMyWill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*SharedPreferences saved_values = PreferenceManager.getDefaultSharedPreferences(getContext());*/
+                /*SharedPreferences saved_values = getContext().getSharedPreferences("ewillSp", Context.MODE_PRIVATE);
+                int count = saved_values.getInt("notif_count", 0);
+                SharedPreferences.Editor editor = saved_values.edit();
+                editor.putInt("notif_count", count + 1);
+                editor.commit();
+
+                Log.d(TAG, "shared pref count: " + saved_values.getInt("notif_count", 0));*/
+
+                sharedPrefManager.addNotificationCount(1);
+                Log.d(TAG, "shared pref count: " + sharedPrefManager.getNotificationCount());
+
+
                 if (userMemberType == 1 || userMemberType == 2) {
                     showMyWillQuestionDialog();
 
@@ -120,11 +140,6 @@ public class HomeFragment extends BaseFragment {
     private void goToMyWill() {
         Log.d(TAG, "-- Go To MyWill --");
 
-        /*FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_tab1_layout, new MyWillsFragment());
-        ft.addToBackStack(null);
-        ft.commit();*/
-
         Intent intent = new Intent(getActivity(), WillActivity.class);
         intent.putExtra("will_intent", "go_to_my_wills");
         startActivity(intent);
@@ -133,10 +148,9 @@ public class HomeFragment extends BaseFragment {
     private void goToOpenWill() {
         Log.d(TAG, "-- Go To Open Will --");
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_tab1_layout, new OpenWillsFragment());
-        ft.addToBackStack(null);
-        ft.commit();
+        Intent intent = new Intent(getActivity(), OpenWillActivity.class);
+        intent.putExtra("will_intent", "go_to_open_will");
+        startActivity(intent);
     }
 
     protected void showMyWillQuestionDialog() {

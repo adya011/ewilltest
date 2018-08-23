@@ -40,13 +40,11 @@ public class MyWillsAdapter extends RecyclerView.Adapter<MyWillsAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         MyWillDetail myWillDetail = myWills.get(position);
         String createdDateRaw = myWillDetail.getCreatedUtc().toString();
-        Date myDate = null;
+        Date myDate;
         String newFormat = "dd MMM yyyy";
-
         String newDateString = null;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        //simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         try {
             myDate = simpleDateFormat.parse(createdDateRaw);
@@ -56,17 +54,6 @@ public class MyWillsAdapter extends RecyclerView.Adapter<MyWillsAdapter.ViewHold
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        //String stringDate = myDate.toString();
-        /*SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd hh:mm:ss");
-        try {
-            newDate = sdf.parse(stringDate);
-            sdf = new SimpleDateFormat("");
-            stringDate = sdf.format(newDate);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
 
         holder.tvWillName.setText(myWillDetail.getName());
         holder.tvCreatedDate.setText(newDateString);

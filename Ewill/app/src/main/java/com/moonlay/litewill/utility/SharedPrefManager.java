@@ -107,7 +107,20 @@ public class SharedPrefManager {
         spEditor.remove(Constants.LOGGEDIN_TOKEN).commit();
     }
 
-    public void removeSP(String keySP) {
-        spEditor.remove(keySP).commit();
+    public int getNotificationCount() {
+        return sp.getInt("notif_count", 0);
+    }
+
+    public void setNotificationCount(int addCount){
+        spEditor.putInt("notif_count", addCount);
+    }
+
+    public void addNotificationCount(int addCount) {
+        int notifCount = getNotificationCount();
+        spEditor.putInt("notif_count", notifCount + addCount);
+    }
+
+    public void clearNotificationCount() {
+        spEditor.remove("notif_count").commit();
     }
 }

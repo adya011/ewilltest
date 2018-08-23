@@ -9,19 +9,11 @@ public class Constants {
     public static final String ID_URL = "http://11.11.5.146:5550/api/";
     public static final String LOGIN_URL = "http://11.11.5.146:5550/api/";
     public static final String TOKEN_URL = "http://11.11.5.146:5540/";
+    public static final String STORAGE_URL = "http://ewilldevstorage.blob.core.windows.net/pictures/";
 
     public static final String IDENTITY_URL = "http://11.11.5.146:5550/api/";
     public static final String MEMBERSHIP_URL = "http://11/11.5.146:5541/api/";
 
-    public static final String REGISTER_OPERATION = "register";
-    public static final String LOGIN_OPERATION = "login";
-    public static final String CHANGE_PASSWORD_OPERATION = "chgPass";
-
-    public static final String IS_LOGGED_IN = "isLoggedIn";
-
-    public static final String NAME = "name";
-    public static final String EMAIL = "email";
-    public static final String UNIQUE_ID = "unique_id";
 
     public static final String FORGOT_USERNAME = "forgot_username";
     public static final String FORGOT_PASSWORD = "forgotpassword";
@@ -42,14 +34,6 @@ public class Constants {
     public static final String WILL_UPDATED = "Will Updated";
     public static final String WILL_DELETED = "Will Deleted";
     public static final String WILL_NOWILL = "Have No Will";
-
-    //Manifest Constant
-    public static final int LOCATION = 0x1;
-    public static final int WRITE_EXTERNAL = 0x3;
-    public static final int READ_EXTERNAL = 0x4;
-    public static final int CAMERA = 0x5;
-    public static final int GPS_SETTINGS = 0x7;
-
 
     // === API ===
     public static final String SUCCESS = "success";
@@ -77,4 +61,14 @@ public class Constants {
     public static final String HEADER_SCOPE = "ewill";
     public static final String HEADER_AGENT = "mobile";
     public static final String HEADER_VERSION = "1.0";
+
+    public static final int MIN_AGE = 21;
+
+    //KEY
+    public static final String STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;"
+            + "AccountName=ewilldevstorage;"
+            + "AccountKey=ttlmYNTs4C4t7YlqynkeZ5CYCeNsiPWsEnF9iXaGFPKybqK1SPfN84l7a8WrKLpz6RBzIpDZkFcSH5IgJ4auOA==;"
+            + "EndpointSuffix=core.windows.net";
+
+
 }

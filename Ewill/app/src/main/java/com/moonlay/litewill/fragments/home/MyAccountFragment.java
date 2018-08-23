@@ -60,8 +60,8 @@ public class MyAccountFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        ((DashboardActivity) getActivity()).setActionBarTitle("Home");
+        //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        //((DashboardActivity) getActivity()).setActionBarTitle("Home");
         return inflater.inflate(R.layout.fragment_my_account, container, false);
     }
 

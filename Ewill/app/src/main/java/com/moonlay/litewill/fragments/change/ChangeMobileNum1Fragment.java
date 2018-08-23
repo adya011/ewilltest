@@ -61,8 +61,8 @@ public class ChangeMobileNum1Fragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change Mobile Number");
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change Mobile Number");
+        //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         spinPhoneCountry = mView.findViewById(R.id.spinner_phone_country_code);
         tvPhoneCountryCode = mView.findViewById(R.id.tv_phone_country_code);

@@ -14,7 +14,7 @@
 
     <item android:state_pressed="true" >
         <shape>
-            <solid android:color="@color/button_standard_pressed"/>
+            <solid android:color="@color/button_standard_pressed" />
             <corners
                 android:radius="@dimen/radius_button" />
             <padding
@@ -25,7 +25,7 @@
         </shape>
     </item>
 
-    <item android:state_enabled="false" >
+    <item android:state_enabled="false">
         <shape>
             <solid android:color="@color/button_standard_disabled"/>
             <corners

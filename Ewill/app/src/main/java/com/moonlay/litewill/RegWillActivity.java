@@ -52,18 +52,6 @@ public class RegWillActivity extends AppCompatActivity {
     public void init() {
         Fragment actionFragment = new Regw1WillNameFragment();
 
-        //Log.d(TAG, "get Intent: " + getIntent);
-
-        /*if (getIntent.equals(HomeFragment.GOTO_REGISTER_WILL)) {
-            actionFragment = new Regw1WillNameFragment();
-
-        } else if (getIntent.equals(HomeFragment.GOTO_MYWILL)) {
-            actionFragment = new MyWillsFragment();
-
-        } else {
-            finish();
-        }*/
-
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame_will, actionFragment);
         ft.commit();

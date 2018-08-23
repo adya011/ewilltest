@@ -12,8 +12,9 @@ public class Subscription {
     private String expiredSuspensionDate;
     private int willMemberId;
     private String userIdentityId;
+    private int maxWillAllowed;
 
-    public Subscription(int subscriptionId, String username, String subscribeDate, String expiredDate, String expiredSuspensionDate, int willMemberId, String userIdentityId) {
+    public Subscription(int subscriptionId, String username, String subscribeDate, String expiredDate, String expiredSuspensionDate, int willMemberId, String userIdentityId, int maxWillAllowed) {
         this.subscriptionId = subscriptionId;
         this.username = username;
         this.subscribeDate = subscribeDate;
@@ -21,6 +22,7 @@ public class Subscription {
         this.expiredSuspensionDate = expiredSuspensionDate;
         this.willMemberId = willMemberId;
         this.userIdentityId = userIdentityId;
+        this.maxWillAllowed = maxWillAllowed;
     }
 
     public int getSubscriptionId() {
@@ -77,6 +79,14 @@ public class Subscription {
 
     public void setUserIdentityId(String userIdentityId) {
         this.userIdentityId = userIdentityId;
+    }
+
+    public int getMaxWillAllowed() {
+        return maxWillAllowed;
+    }
+
+    public void setMaxWillAllowed(int maxWillAllowed) {
+        this.maxWillAllowed = maxWillAllowed;
     }
 }
 

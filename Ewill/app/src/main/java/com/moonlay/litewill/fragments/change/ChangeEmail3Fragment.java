@@ -37,7 +37,7 @@ public class ChangeEmail3Fragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address");
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address");
         initView();
     }
 
@@ -48,7 +48,7 @@ public class ChangeEmail3Fragment extends BaseFragment {
             public void onClick(View view) {
                 /*FragmentManager fm = getFragmentManager();
                 fm.popBackStack(null, fm.POP_BACK_STACK_INCLUSIVE);*/
-                MainActivity.isDeepLink = false;
+                MainActivity.isDeepLinkChangeEmail = false;
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.frame_tab1_layout, new MyAccountFragment());
                 ft.commit();

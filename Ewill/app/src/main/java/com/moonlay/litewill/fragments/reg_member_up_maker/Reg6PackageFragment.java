@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.moonlay.litewill.R;
 import com.moonlay.litewill.RegUpMemberActivity;
@@ -22,6 +23,7 @@ import com.moonlay.litewill.api.RestProvider;
 import com.moonlay.litewill.config.Constants;
 import com.moonlay.litewill.fragments.BaseFragment;
 import com.moonlay.litewill.model.ProductListResponse;
+import com.moonlay.litewill.utility.MyUtility;
 
 import java.util.UUID;
 
@@ -61,7 +63,6 @@ public class Reg6PackageFragment extends BaseFragment {
     }
 
     private void init() {
-        //packageAdapter();
         apiInterface = RestProvider.getClient2().create(ApiInterface.class);
 
         getPackageList();
@@ -70,22 +71,6 @@ public class Reg6PackageFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 nextStep();
-            }
-        });
-    }
-
-    private void packageAdapter() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), R.layout.spinner_item, payPackageString);
-        spPackage.setAdapter(adapter);
-        spPackage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((RegUpMemberActivity) getActivity()).subscribePackage = payPackage[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
@@ -104,16 +89,44 @@ public class Reg6PackageFragment extends BaseFragment {
                     payPackage = new int[payPackageListSize];
                     payPackageString = new String[payPackageListSize];
                     for (int i = 0; i < payPackageListSize; i++) {
-                        payPackage[i] = response.body().getResult().get(i).getUnitOfPeriod();
-                        payPackageString[i] = response.body().getResult().get(i).getUnitOfPeriod() + " year(s)";
+                        try {
+                            payPackage[i] = response.body().getResult().get(i).getUnitOfPeriod();
+                            payPackageString[i] = response.body().getResult().get(i).getUnitOfPeriod() + " year(s)";
+                            ((RegUpMemberActivity) getActivity()).productCode = response.body().getResult().get(i).getCode();
+
+                        } catch (Exception e) {
+                            Log.d(TAG, "Exception" + e);
+                            Toast.makeText(getContext(), "An error occured", Toast.LENGTH_SHORT);
+                        }
                     }
+
                     packageAdapter();
+
+                } else {
+                    MyUtility.alertDialogOK(getActivity(), "Connection Error");
                 }
             }
 
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
                 Log.d(TAG, "Failed: " + t);
+            }
+        });
+    }
+
+    private void packageAdapter() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(),
+                R.layout.spinner_item, payPackageString);
+        spPackage.setAdapter(adapter);
+        spPackage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((RegUpMemberActivity) getActivity()).subscribePackage = payPackage[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }

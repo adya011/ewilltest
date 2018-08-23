@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,20 @@ import android.widget.TextView;
 import com.moonlay.litewill.R;
 import com.moonlay.litewill.api.ApiInterface;
 import com.moonlay.litewill.api.RestProvider;
+import com.moonlay.litewill.config.Constants;
 import com.moonlay.litewill.fragments.BaseFragment;
 import com.moonlay.litewill.model.Address;
 import com.moonlay.litewill.model.Document;
+import com.moonlay.litewill.model.MyWillDetailResponse;
 import com.moonlay.litewill.utility.SharedPrefManager;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.UUID;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +45,7 @@ public class OpenWillDetailFragment extends BaseFragment {
 
     int willId;
     String fullName, willName, willLocation;
-    ArrayList<Address> willLocations;
+    Address[] willLocations;
     ArrayList<Document> willDocuments = new ArrayList<>();
 
     public OpenWillDetailFragment() {
@@ -68,6 +77,8 @@ public class OpenWillDetailFragment extends BaseFragment {
         imageMap = mView.findViewById(R.id.map_image);
         layDoc = mView.findViewById(R.id.lay_will_doc);
 
+        getActivity().setTitle("Open Will detail");
+
         init();
     }
 
@@ -76,21 +87,22 @@ public class OpenWillDetailFragment extends BaseFragment {
         apiInterface = RestProvider.getClient2().create(ApiInterface.class);
 
         willId = getArguments().getInt("will_id");
+        Log.d(TAG, "will id: " + willId);
 
-        //requestOpenWillDetail();
+        requestOpenWillDetail();
 
         layDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_tab1_layout, UpdWillDetailDocFragment.newInstance(willDocuments));
+                ft.replace(R.id.frame_will, UpdWillDetailDocFragment.newInstance(willDocuments));
                 ft.addToBackStack(null);
                 ft.commit();
             }
         });
     }
 
-    /*private void requestOpenWillDetail() {
+    private void requestOpenWillDetail() {
         String token = sharedPrefManager.getLoginToken();
         String uniqueID = UUID.randomUUID().toString();
 
@@ -114,22 +126,22 @@ public class OpenWillDetailFragment extends BaseFragment {
                     willName = response.body().getResult()[0].getName();
                     tvWillName.setText(willName);
 
-                    willLocations = response.body().getResult()[0].getAddresses();
+                    willLocations = response.body().getResult()[0].getWillAddresses();
 
-                    if (willLocations.get(0).getStreet() != null) {
-                        street = willLocations.get(0).getStreet().toString();
+                    if (willLocations[0].getStreet() != null) {
+                        street = willLocations[0].getStreet().toString();
                     }
 
-                    if (willLocations.get(0).getCity() != null) {
-                        city = willLocations.get(0).getCity().toString();
+                    if (willLocations[0].getCity() != null) {
+                        city = willLocations[0].getCity().toString();
                     }
 
-                    if (willLocations.get(0).getZipCode() != null) {
-                        zipCode = willLocations.get(0).getZipCode().toString();
+                    if (willLocations[0].getZipCode() != null) {
+                        zipCode = willLocations[0].getZipCode().toString();
                     }
 
-                    if (willLocations.get(0).getCountry() != null) {
-                        country = willLocations.get(0).getCountry().toString();
+                    if (willLocations[0].getCountry() != null) {
+                        country = willLocations[0].getCountry().toString();
                     }
 
                     willLocation = street + " " + city + " " + zipCode + " " + country;
@@ -137,12 +149,12 @@ public class OpenWillDetailFragment extends BaseFragment {
 
                     Picasso.with(getContext())
                             .load("http://maps.google.com/maps/api/staticmap?center="
-                                    + willLocations.get(0).getLatitude() + ","
-                                    + willLocations.get(0).getLongitude()
+                                    + willLocations[0].getLatitude() + ","
+                                    + willLocations[0].getLongitude()
                                     + "&zoom=15&size=350x200&sensor=false"
                                     + "&markers="
-                                    + willLocations.get(0).getLatitude() + ","
-                                    + willLocations.get(0).getLongitude())
+                                    + willLocations[0].getLatitude() + ","
+                                    + willLocations[0].getLongitude())
                             .into(imageMap);
 
                     willDocuments.addAll(response.body().getResult()[0].getDocuments());
@@ -158,5 +170,5 @@ public class OpenWillDetailFragment extends BaseFragment {
 
             }
         });
-    }*/
+    }
 }

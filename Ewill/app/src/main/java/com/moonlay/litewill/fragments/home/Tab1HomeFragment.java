@@ -53,16 +53,16 @@ public class Tab1HomeFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (!MainActivity.isDeepLink) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.frame_tab1_layout, new HomeFragment());
-            ft.commit();
-
-        } else {
+        if (MainActivity.isDeepLinkChangeEmail) {
             Log.d("mydebug_tab1", "deep link true");
             FragmentTransaction ft2 = getFragmentManager().beginTransaction();
             ft2.replace(R.id.frame_tab1_layout, new ChangeEmail3Fragment());
             ft2.commit();
+
+        } else {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.frame_tab1_layout, new HomeFragment());
+            ft.commit();
         }
     }
 }

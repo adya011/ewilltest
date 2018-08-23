@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.moonlay.litewill.DashboardActivity;
+import com.moonlay.litewill.OpenWillActivity;
 import com.moonlay.litewill.R;
 import com.moonlay.litewill.adapter.MyWillsAdapter;
 import com.moonlay.litewill.adapter.MyWillsItemListener;
@@ -36,6 +37,8 @@ import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * OpenWillActivity
  */
 public class OpenWillsFragment extends BaseFragment {
     private static String TAG = "mydebug_openwill";
@@ -63,11 +66,9 @@ public class OpenWillsFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = mView.findViewById(R.id.recycler_view);
-        fab = mView.findViewById(R.id.fab);
-        fab.setVisibility(View.INVISIBLE);
 
         getActivity().setTitle("Open Will");
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((OpenWillActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
     }
 
@@ -121,13 +122,8 @@ public class OpenWillsFragment extends BaseFragment {
 
                         int willId = myWillDet.getId();
 
-                        /*Intent intent = new Intent(getActivity(), WillActivity.class);
-                        intent.putExtra("will_intent", "go_to_will_detail_open");
-                        intent.putExtra("will_det_id", willId);
-                        startActivity(intent);*/
-
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.frame_tab1_layout, new OpenWillDetailFragment().newInstance(willId));
+                        ft.replace(R.id.frame_will, new OpenWillDetailFragment().newInstance(willId));
                         ft.addToBackStack(null);
                         ft.commit();
                     }

@@ -24,6 +24,8 @@ import com.moonlay.litewill.utility.SharedPrefManager;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * Activity: WillActivity
  */
 public class Regw1WillNameFragment extends BaseFragment {
     Button btnNext;
@@ -56,15 +58,9 @@ public class Regw1WillNameFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         sharedPrefManager = new SharedPrefManager(getContext());
-
-        /*documents[0] = new Document("remark document test", "D:/asd/qwe/zxc");
-        documents[1] = new Document("remark document test 2", "D:/asd/qwe/asd");
-        shareds[0] = new Shared("nandana.samudera@moonlay.com", true, true);
-        addresses[0] = new Address("Jl.YangLurus no.5 Kuningan", "Jakarta", "Indonesia", "41523", -6.226196, 106.808441);*/
-
         apiInterface = RestProvider.getClient2().create(ApiInterface.class);
-
         btnNext = mView.findViewById(R.id.btn_next);
         etWillName = mView.findViewById(R.id.et_willname);
 

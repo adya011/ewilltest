@@ -10,14 +10,23 @@ import com.moonlay.litewill.api.ApiInterface;
 import com.moonlay.litewill.api.GetToken;
 import com.moonlay.litewill.api.RestProvider;
 import com.moonlay.litewill.config.Constants;
+import com.moonlay.litewill.model.NotificationDb;
 import com.moonlay.litewill.model.VerifyEmail;
 import com.moonlay.litewill.model.VerifyEmailChange;
 import com.moonlay.litewill.model.VerifyEmailResponse;
+import com.moonlay.litewill.utility.DatabaseHelper;
+import com.moonlay.litewill.utility.MyService;
 import com.moonlay.litewill.utility.SharedPrefManager;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import retrofit2.Call;
@@ -35,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
     String loginToken;
 
     public static boolean isUserLoggedIn = false;
-    public static boolean isDeepLink = false;
+
+    public static boolean isDeepLinkRegister = false;
+    public static boolean isDeepLinkChangeEmail = false;
+    public static boolean isDeepLinkForgotPass = false;
 
     public static String TAG = "mydebug_start";
     public static String TAG_URI = "mydebug_uri";
@@ -45,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
         init();
+        startMyService();
     }
 
     private void init() {
@@ -69,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "reg username: " + regUsername);
         Log.d(TAG, "reg status: " + String.valueOf(regStatus));
 
+        //insertNotificationDb(223, "Will Updated");
+
         if (uriData != null && action != null) {
             try {
                 deepLink(uriData);
-                isDeepLink = true;
-                Log.d("mydebug", "DEEPLINK: " + isDeepLink + " | URI DATA: " + String.valueOf(uriData) + " | ACTION: " + String.valueOf(action) + " | SCHEME: " + scheme);
+                Log.d("mydebug", " | URI DATA: " + String.valueOf(uriData) + " | ACTION: " + String.valueOf(action) + " | SCHEME: " + scheme);
 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -95,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
+    }
+
+    private void startMyService() {
+        Intent intent = new Intent(getApplicationContext(), MyService.class);
+        startService(intent);
     }
 
     //Open app via deeplink email confirmation
@@ -124,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (uriHost) {
             case "register":
+                isDeepLinkRegister = true;
                 try {
                     if (requestVerifyEmailRegister().equals(Constants.SUCCESS)) {
                         Log.d(TAG_URI, "request verify email" + requestVerifyEmailRegister());
@@ -147,10 +167,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case "forgotpassword":
+                isDeepLinkForgotPass = true;
                 activity = ForgotActivity.class;
                 break;
 
             case "change-email":
+                isDeepLinkChangeEmail = true;
                 if (isUserLoggedIn) {
                     try {
                         if (requestVerifyEmailChangeEmail(loginToken, uriToken, uriUserName, uriNewEmail).equals(Constants.SUCCESS)) {
@@ -277,5 +299,65 @@ public class MainActivity extends AppCompatActivity {
         threadVerifyEmail.join();
 
         return retVal[0];
+    }
+
+    DatabaseHelper db;
+    List<NotificationDb> notificationDbList = new ArrayList<>();
+
+    /*private void createNotification() {
+        db = new DatabaseHelper(this);
+
+        long id = db.insertNotification("will name", "updated will",
+                false, "will creator", "myemail@gmail.com");
+
+        NotificationDb n = db.getNotification(id);
+
+        if (n != null) {
+            notificationDbList.add(0, n);
+            Log.d(TAG, "n not null");
+            Log.d(TAG, "notification.add creator name: " + n.getCreator_name());
+            Log.d(TAG, "notification.add will name: " + n.getWill_name());
+        }
+    }*/
+
+    private void insertNotificationDb(int willId, String willName, String flag) {
+        db = new DatabaseHelper(this);
+        sharedPrefManager = new SharedPrefManager(this);
+
+        String userEmail = sharedPrefManager.getUserEmail();
+
+        long id = db.insertNotification(willId, willName, flag, userEmail);
+
+        NotificationDb n = db.getNotification(id);
+        if (n != null) {
+            notificationDbList.add(0, n);
+            Log.d(TAG, "n not null");
+            Log.d(TAG, "notification.add will id: " + n.getWill_id());
+            Log.d(TAG, "notification.add flag: " + n.getFlag());
+        }
+    }
+
+    private void showNotifications() {
+        Log.d(TAG, "show notifications");
+        db = new DatabaseHelper(this);
+
+        int notificationCount = db.getNotificationCount();
+        Log.d(TAG, "notification count: " + notificationCount);
+
+        /*try {
+            notificationDbList.add(db.getNotification(1));
+            Log.d(TAG, "will name 0: " + notificationDbList.get(0).getWill_name());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            notificationDbList.addAll(db.getAllNotification());
+            String willName = notificationDbList.get(0).getWill_name();
+            Log.d(TAG, "will name 0: " + willName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d(TAG, "exception: " + e);
+        }
     }
 }

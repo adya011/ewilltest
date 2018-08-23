@@ -29,7 +29,12 @@ import com.moonlay.litewill.utility.MyUtility;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import xavier.blacksharktech.com.xavierlib.XavierActivity;
@@ -316,11 +321,37 @@ public class Reg2ScanFragment extends BaseFragment {
 
                 ((RegUpMemberActivity) getActivity()).passportNo = idNumber;
                 ((RegUpMemberActivity) getActivity()).fullName = fullName;
-                ((RegUpMemberActivity) getActivity()).dob = dob;
+                ((RegUpMemberActivity) getActivity()).dob = dobFormatting(dob);
                 ((RegUpMemberActivity) getActivity()).pob = pob;
                 ((RegUpMemberActivity) getActivity()).nationality = nationality;
                 ((RegUpMemberActivity) getActivity()).gender = gender;
+
+                if (nationality.equals("SGP")) {
+                    ((RegUpMemberActivity) getActivity()).isSingaporean = true;
+                } else {
+                    ((RegUpMemberActivity) getActivity()).isSingaporean = false;
+                }
             }
         });
+    }
+
+    private String dobFormatting(String dobRaw) {
+        String newFormat = "yyyy-MM-dd";
+        DateFormat strToDateFormat = new SimpleDateFormat("yyMMdd", Locale.ENGLISH);
+        try {
+            //Convert to date
+            Date convertedDate = strToDateFormat.parse(dobRaw);
+
+            //Convert to string with format
+            SimpleDateFormat dateToStrFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss 'GMT'Z yyyy");
+            dateToStrFormat.applyPattern(newFormat);
+            String convertedDateString = dateToStrFormat.format(convertedDate);
+
+            return convertedDateString;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

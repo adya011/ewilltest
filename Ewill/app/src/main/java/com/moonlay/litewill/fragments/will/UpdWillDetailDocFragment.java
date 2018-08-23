@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.moonlay.litewill.OpenWillActivity;
 import com.moonlay.litewill.R;
+import com.moonlay.litewill.WillActivity;
 import com.moonlay.litewill.adapter.MyWillDetailDocAdapter;
+import com.moonlay.litewill.adapter.UpdWillDetailDocItemListener;
 import com.moonlay.litewill.fragments.BaseFragment;
 import com.moonlay.litewill.model.Document;
 
@@ -67,8 +71,7 @@ public class UpdWillDetailDocFragment extends BaseFragment {
 
         recyclerView = mView.findViewById(R.id.recycler_view);
 
-        //((WillActivity) getActivity()).setActionBarTitle("Will Document");
-        //((WillActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActivity().setTitle("Will Document");
         init();
     }
 
@@ -93,12 +96,37 @@ public class UpdWillDetailDocFragment extends BaseFragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        recyclerView.addOnItemTouchListener(new UpdWillDetailDocItemListener(getContext(), recyclerView,
+                new UpdWillDetailDocItemListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Document document = documents.get(position);
+                        String docRemark = document.getDocumentRemark();
+
+                        nextFrag(docRemark);
+
+                        Log.d(TAG, "clicked " + docRemark);
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
+
         Log.d(TAG, "document size: " + documents.size());
+    }
+
+    private void nextFrag(String imgName){
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_will, UpdWillDetailDocViewFragment.newInstace(imgName));
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "on destroy");
+        Log.d(TAG, "on destroyed");
         documents.clear();
         super.onDestroy();
     }

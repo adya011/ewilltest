@@ -49,8 +49,6 @@ public class Reg5PassportFragment extends BaseFragment {
         spReside = mView.findViewById(R.id.sp_reside);
         etAddress = mView.findViewById(R.id.et_address);
 
-        etNationality.setText(((RegUpMemberActivity) getActivity()).nationality);
-
         init();
     }
 
@@ -58,34 +56,39 @@ public class Reg5PassportFragment extends BaseFragment {
         genderAdapter();
         resideAdapter();
 
-        Bundle args = new Bundle();
-        if (args != null) {
+        etNationality.setText(((RegUpMemberActivity) getActivity()).nationality);
 
-            etNationality.setText(((RegUpMemberActivity) getActivity()).nationality);
+        if (((RegUpMemberActivity) getActivity()).isSingaporean) {
+            spReside.setSelection(0);
+        } else {
+            spReside.setSelection(1);
+        }
 
-            if(((RegUpMemberActivity) getActivity()).gender == null) {
-                spGender.setSelection(0);
-            }
-
-
-
-                /*if (((RegUpMemberActivity) getActivity()).gender.equals("F")) {
-                    spGender.setSelection(1);
-                }else{
-                    spGender.setSelection(0);
-                }
-            }
-            else {
-                spGender.setSelection(0);
-            }*/
+        if (((RegUpMemberActivity) getActivity()).gender != null
+                && ((RegUpMemberActivity) getActivity()).gender.equals("F")) {
+            spGender.setSelection(1);
+        } else {
+            spGender.setSelection(0);
         }
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((RegUpMemberActivity) getActivity()).nationality = etNationality.getText().toString();
-                ((RegUpMemberActivity) getActivity()).gender = "male"; //etGender.getText().toString();
-                ((RegUpMemberActivity) getActivity()).isSingaporean = true;
+
+                if (spGender.getSelectedItemPosition() == 1) {
+                    ((RegUpMemberActivity) getActivity()).gender = "female";
+
+                } else {
+                    ((RegUpMemberActivity) getActivity()).gender = "male";
+                }
+
+                if (spReside.getSelectedItemPosition() == 0) {
+                    ((RegUpMemberActivity) getActivity()).isSingaporean = true;
+                } else {
+                    ((RegUpMemberActivity) getActivity()).isSingaporean = false;
+                }
+
                 ((RegUpMemberActivity) getActivity()).address = etAddress.getText().toString();
 
                 Log.d(TAG, "sp gender: " + spGender.getSelectedItem().toString());
@@ -99,7 +102,8 @@ public class Reg5PassportFragment extends BaseFragment {
     }
 
     private void genderAdapter() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.spinner_item, Constants.gender);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this.getActivity(),
+                R.layout.spinner_item, Constants.gender);
         spGender.setAdapter(adapter);
         spGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -122,7 +126,8 @@ public class Reg5PassportFragment extends BaseFragment {
     }
 
     private void resideAdapter() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), R.layout.spinner_item, Constants.yesNo);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this.getActivity(),
+                R.layout.spinner_item, Constants.yesNo);
         spReside.setAdapter(adapter);
         spReside.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -142,6 +147,5 @@ public class Reg5PassportFragment extends BaseFragment {
 
             }
         });
-
     }
 }

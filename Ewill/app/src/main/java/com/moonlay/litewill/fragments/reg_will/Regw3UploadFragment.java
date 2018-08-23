@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
+import android.os.Handler;
 import android.provider.OpenableColumns;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,16 +17,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.moonlay.litewill.R;
 import com.moonlay.litewill.adapter.MyWillDetailDocAdapter;
 import com.moonlay.litewill.fragments.BaseFragment;
 import com.moonlay.litewill.model.Address;
 import com.moonlay.litewill.model.Document;
+import com.moonlay.litewill.utility.FileManager;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -40,11 +41,10 @@ public class Regw3UploadFragment extends BaseFragment {
     RecyclerView recyclerView;
     MyWillDetailDocAdapter adapter;
     ArrayList<Document> willDocument = new ArrayList<>();
+    String imageName;
 
     private static String TAG = "mydebug_regwill3";
-    private static int RESULT_LOAD_IMG = 1;
-    String filePath;
-    String fileName;
+    private static int RESULT_PICK_IMG = 1;
 
     public Regw3UploadFragment() {
         // Required empty public constructor
@@ -63,7 +63,7 @@ public class Regw3UploadFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentF
         return inflater.inflate(R.layout.fragment_reg19_upload, container, false);
     }
 
@@ -87,11 +87,15 @@ public class Regw3UploadFragment extends BaseFragment {
         btnWillUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openPdfIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                /*Intent openPdfIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 openPdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 openPdfIntent.setType("application/pdf");
-                startActivityForResult(openPdfIntent, 7);
-                //btnWillUpload.setEnabled(false);
+                startActivityForResult(openPdfIntent, 7);*/
+
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(photoPickerIntent, RESULT_PICK_IMG);
             }
         });
 
@@ -109,10 +113,8 @@ public class Regw3UploadFragment extends BaseFragment {
                 try {
                     Log.d(TAG, "-- Go to regw 4 --");
                     Log.d(TAG, "Will name: " + willName);
-                    //Log.d(TAG, "Addresses size: " + addresses.length);
-                    //Log.d(TAG, "Addresses 0 street: " + addresses[0].getStreet());
-                    /*Log.d(TAG, "Documents size: " + willDocument.size());
-                    Log.d(TAG, "Documents 0: " + willDocument.get(0).getDocumentRemark());*/
+                    Log.d(TAG, "Will doc path: " + willDocument.get(0).getDocumentPath());
+                    Log.d(TAG, "Will doc remark: " + willDocument.get(0).getDocumentRemark());
 
                 } catch (Exception e) {
                     Log.d(TAG, "Exception: " + e);
@@ -123,44 +125,87 @@ public class Regw3UploadFragment extends BaseFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "open pdf galery");
-        Log.d(TAG, "Request code: " + requestCode);
-        Log.d(TAG, "Result code: " + resultCode);
+        if (requestCode == RESULT_PICK_IMG) {
+            openGalleryImg(data);
+        }
 
-        String displayName = null;
-        switch (requestCode) {
+        /*switch (requestCode) {
             case 7:
-                if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-
-                    String uriString = uri.toString();
-                    File myFile = new File(uriString);
-                    String path = myFile.getAbsolutePath();
-
-                    if (uriString.startsWith("content://")) {
-                        Cursor cursor = null;
-                        try {
-                            cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-                            if (cursor != null && cursor.moveToFirst()) {
-                                displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                                Log.d(TAG, "display name:" + displayName);
-                                willDocument.add(new Document(displayName, path));
-                                refreshAddAdapter();
-                            }
-                        } finally {
-                            cursor.close();
-                        }
-                    } else if (uriString.startsWith("file://")) {
-                        displayName = myFile.getName();
-                        Log.d(TAG, "display name:" + displayName);
-                    }
-                }
+                openGalleryPdf(data);
                 break;
+        }*/
+    }
+
+    private void openGalleryImg(Intent data) {
+        Uri uri = data.getData();
+        String uriString = uri.toString();
+        File myFile = new File(uriString);
+        Cursor cursor = null;
+
+        String path = myFile.getAbsolutePath();
+        String displayName;
+
+        if (uriString.startsWith("content://")) {
+            try {
+                cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                    String filePath = path + "/" + displayName;
+
+                    UploadFile(uri, filePath);
+                }
+            } finally {
+                cursor.close();
+            }
+
+        } else if (uriString.startsWith("file://")) {
+            displayName = myFile.getName();
+            String filePath = path + "/" + displayName;
+
+            UploadFile(uri, filePath);
         }
     }
 
-    public void enableButtonUpload(){
+
+    private void UploadFile(Uri fileUri, final String filePath) {
+        try {
+            final InputStream imageStream = getActivity().getContentResolver().openInputStream(fileUri);
+            final int imageLength = imageStream.available();
+
+            final Handler handler = new Handler();
+
+            Thread th = new Thread(new Runnable() {
+                public void run() {
+
+                    try {
+                        final String uplImageName = FileManager.UploadImage(imageStream, imageLength);
+                        handler.post(new Runnable() {
+
+                            public void run() {
+                                imageName = uplImageName;
+                                Toast.makeText(getActivity(), "Image Uploaded Successfully. Name = " + imageName, Toast.LENGTH_SHORT).show();
+                                willDocument.add(new Document(imageName, filePath));
+                                refreshAddAdapter();
+                            }
+                        });
+
+                    } catch (Exception ex) {
+                        final String exceptionMessage = ex.getMessage();
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(getActivity(), exceptionMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            });
+            th.start();
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void enableButtonUpload() {
         btnWillUpload.setEnabled(true);
     }
 

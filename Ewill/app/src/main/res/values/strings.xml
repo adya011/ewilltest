@@ -83,4 +83,8 @@
     <string name="wait_verify_email">wait_verify_email</string>
     <string name="verify_phone">verify_phone</string>
 
+
+    <!-- ALERT STRING -->
+    <string name="min_age">Minimum age is must be 21 years old</string>
+
 </resources>

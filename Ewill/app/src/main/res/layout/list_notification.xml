@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        style="@style/Divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/lay_main"
+        android:layout_alignParentTop="true"
+        android:layout_below="@id/lay_main"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp" />
+
+    <RelativeLayout
+        android:id="@+id/lay_main"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#fff"
+        android:paddingBottom="12dp"
+        android:paddingLeft="21dp"
+        android:paddingRight="21dp"
+        android:paddingTop="12dp">
+
+        <ImageView
+            android:id="@+id/img_bullet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_circle" />
+
+        <TextView
+            android:id="@+id/tv_notification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@id/img_bullet"
+            android:layout_toRightOf="@id/img_bullet"
+            android:text="John Doe notification here"
+            android:textColor="@color/semi_black"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/Divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/lay_main"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp" />
+
+</RelativeLayout>

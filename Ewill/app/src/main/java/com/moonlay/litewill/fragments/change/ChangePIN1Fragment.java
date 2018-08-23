@@ -44,8 +44,8 @@ public class ChangePIN1Fragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change PIN");
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change PIN");
+        //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
     }
 

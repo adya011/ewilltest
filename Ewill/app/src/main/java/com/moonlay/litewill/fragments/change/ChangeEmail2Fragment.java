@@ -34,7 +34,7 @@ public class ChangeEmail2Fragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mView = view;
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address Verification");
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address Verification");
     }
 
 }

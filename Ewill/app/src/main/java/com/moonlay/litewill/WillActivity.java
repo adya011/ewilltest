@@ -27,9 +27,6 @@ public class WillActivity extends AppCompatActivity {
 
             if (getIntentAction.equals("go_to_my_wills")) {
                 showMyWills();
-
-            } else if (getIntentAction.equals("go_to_will_detail_open")) {
-                showMuWillDetailOpenFragment();
             }
 
         } else {
@@ -43,24 +40,19 @@ public class WillActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    private void showMuWillDetailOpenFragment(){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        //ft.replace(R.id.frame_will, OpenWillDetailFragment.newInstance(getIntentWillDetId));
-        //ft.commit();
-    }
-
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
-    }
-
-    /*@Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }*/
+        /*return super.onSupportNavigateUp();*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

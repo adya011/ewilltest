@@ -1,19 +1,26 @@
 package com.moonlay.litewill.fragments.will;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.moonlay.litewill.DashboardActivity;
 import com.moonlay.litewill.R;
 import com.moonlay.litewill.WillActivity;
 import com.moonlay.litewill.adapter.MyWillsAdapter;
@@ -23,6 +30,7 @@ import com.moonlay.litewill.api.RestProvider;
 import com.moonlay.litewill.config.Constants;
 import com.moonlay.litewill.fragments.BaseFragment;
 import com.moonlay.litewill.fragments.reg_will.Regw1WillNameFragment;
+import com.moonlay.litewill.model.MemberInfoResponse;
 import com.moonlay.litewill.model.MyWillDetail;
 import com.moonlay.litewill.model.MyWillResponse;
 import com.moonlay.litewill.utility.SharedPrefManager;
@@ -47,7 +55,10 @@ public class MyWillsFragment extends BaseFragment {
     ApiInterface apiInterface;
     RecyclerView recyclerView;
     MyWillsAdapter adapter;
-    FloatingActionButton fab;
+    Button btnCreate;
+
+    int memberMaxWill;
+
 
     public MyWillsFragment() {
         // Required empty public constructor
@@ -68,7 +79,7 @@ public class MyWillsFragment extends BaseFragment {
         apiInterface = RestProvider.getClient2().create(ApiInterface.class);
         recyclerView = mView.findViewById(R.id.recycler_view);
         adapter = new MyWillsAdapter(myWills);
-        fab = mView.findViewById(R.id.fab);
+        btnCreate = mView.findViewById(R.id.btn_create);
 
         ((WillActivity) getActivity()).setActionBarTitle("Wills");
         ((WillActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,12 +87,62 @@ public class MyWillsFragment extends BaseFragment {
     }
 
     public void init() {
-        final String token = sharedPrefManager.getLoginToken();
+        //btnCreate.setVisibility(View.INVISIBLE);
+        testNotificationCount();
+
+        getUserMaxWill();
+        requestMyWills();
+
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.frame_will, new Regw1WillNameFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+    }
+
+    private void testNotificationCount(){
+        sharedPrefManager.addNotificationCount(2);
+
+        /*LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View vi = inflater.inflate(R.layout.activity_dashboard, null);
+        TextView tv = vi.findViewById()*/
+
+        /*LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View vi = inflater.inflate(R.layout.activity_dashboard, null);*/
+
+        //((DashboardActivity)getActivity()).findViewById(R.id.recycler_view);
+    }
+
+    private void getUserMaxWill() {
+        String token = sharedPrefManager.getLoginToken();
         String uniqueID = UUID.randomUUID().toString();
 
-        Log.d(TAG, "init my wills");
+        Call<MemberInfoResponse> call = apiInterface.memberInfo(uniqueID, Constants.HEADER_AGENT,
+                Constants.HEADER_VERSION, token);
+        call.enqueue(new Callback<MemberInfoResponse>() {
+            @Override
+            public void onResponse(Call<MemberInfoResponse> call, Response<MemberInfoResponse> response) {
+                Log.d(TAG, "Get Member Info API Response. Code: " + response.code() + ". isSuccessfull: " + response.isSuccessful());
+                memberMaxWill = response.body().getResult().get(0).getSubscriptions().get(0).getMaxWillAllowed();
+                Log.d(TAG, "getUserMaxWill: " + memberMaxWill);
+            }
 
-        //refreshAdapter();
+            @Override
+            public void onFailure(Call<MemberInfoResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void requestMyWills() {
+        final String token = sharedPrefManager.getLoginToken();
+        String uniqueID = UUID.randomUUID().toString();
 
         Call<MyWillResponse> call = apiInterface.myWillList(uniqueID, Constants.HEADER_AGENT, Constants.HEADER_VERSION, token);
         call.enqueue(new Callback<MyWillResponse>() {
@@ -90,23 +151,20 @@ public class MyWillsFragment extends BaseFragment {
                 Log.d(TAG, "API Response. Code: " + response.code() + ". isSuccessfull: " + response.isSuccessful());
                 myWills.addAll(response.body().getResult());
                 getMyWillList();
+                Log.d(TAG, "Request My Wills. Member max will: " + memberMaxWill);
+                if (myWills.size() < memberMaxWill) {
+                    /*btnCreate.setVisibility(View.VISIBLE);*/
+                    btnCreate.setEnabled(true);
+                } else {
+                    /*btnCreate.setVisibility(View.INVISIBLE);*/
+                    btnCreate.setEnabled(false);
+                }
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<MyWillResponse> call, Throwable t) {
                 Log.d(TAG, "Failed");
-            }
-        });
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(getContext(), RegWillActivity.class));
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_will, new Regw1WillNameFragment());
-                ft.addToBackStack(null);
-                ft.commit();
             }
         });
     }

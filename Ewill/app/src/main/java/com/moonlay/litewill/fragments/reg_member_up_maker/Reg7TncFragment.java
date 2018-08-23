@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.moonlay.litewill.R;
+import com.moonlay.litewill.RegMemberActivity;
 import com.moonlay.litewill.RegUpMemberActivity;
 import com.moonlay.litewill.api.ApiInterface;
 import com.moonlay.litewill.api.RestProvider;
@@ -19,6 +20,7 @@ import com.moonlay.litewill.config.Constants;
 import com.moonlay.litewill.fragments.BaseFragment;
 import com.moonlay.litewill.model.UpgradeMaker;
 import com.moonlay.litewill.model.UpgradeMakerResponse;
+import com.moonlay.litewill.utility.MyUtility;
 import com.moonlay.litewill.utility.SharedPrefManager;
 
 import java.util.UUID;
@@ -45,6 +47,7 @@ public class Reg7TncFragment extends BaseFragment {
     private String gender;
     private String address;
     private boolean isSingaporean;
+    private String productCode;
 
     public Reg7TncFragment() {
         // Required empty public constructor
@@ -78,6 +81,7 @@ public class Reg7TncFragment extends BaseFragment {
         gender = ((RegUpMemberActivity) getActivity()).gender;
         address = ((RegUpMemberActivity) getActivity()).address;
         isSingaporean = ((RegUpMemberActivity) getActivity()).isSingaporean;
+        productCode = ((RegUpMemberActivity) getActivity()).productCode;
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +96,7 @@ public class Reg7TncFragment extends BaseFragment {
         String uniqueID = UUID.randomUUID().toString();
 
         Call<UpgradeMakerResponse> call = apiInterface.upgradeMaker(uniqueID, Constants.HEADER_AGENT, Constants.HEADER_VERSION, token,
-                new UpgradeMaker(passportNo, fullName, dateOfBirth, placeOfBirth, nationality, gender, address, isSingaporean));
+                new UpgradeMaker(passportNo, fullName, dateOfBirth, placeOfBirth, nationality, gender, address, isSingaporean, productCode));
         call.enqueue(new Callback<UpgradeMakerResponse>() {
             @Override
             public void onResponse(Call<UpgradeMakerResponse> call, Response<UpgradeMakerResponse> response) {
@@ -103,7 +107,8 @@ public class Reg7TncFragment extends BaseFragment {
                     Log.d(TAG, "url: " + response.raw().request().url());
                     Log.d(TAG, "passNo: " + passportNo + ", fullName: " + fullName + ", dob: " + dateOfBirth
                             + ", pob: " + placeOfBirth + ", nationality: " + nationality + ", gender: " + gender
-                            + ", address: " + address + ", isSingapore: " + isSingaporean);
+                            + ", address: " + address + ", isSingapore: " + isSingaporean + ", productCode: " + productCode);
+                    MyUtility.alertDialogOK(getActivity(),"Connection Error");
                 }
             }
 

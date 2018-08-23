@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moonlay.litewill.ForgotActivity;
 import com.moonlay.litewill.DashboardActivity;
@@ -87,6 +88,8 @@ public class LoginFragment extends BaseFragment {
         sharedPrefManager = new SharedPrefManager(getContext());
         String lastLoggedInUsername = sharedPrefManager.getUserLastLoggedIn();
 
+        /*sharedPrefManager.addNotificationCount(2);*/
+
         if (lastLoggedInUsername != null) {
             etUsername.setText(lastLoggedInUsername, TextView.BufferType.EDITABLE);
             etPassword.requestFocus();
@@ -100,6 +103,11 @@ public class LoginFragment extends BaseFragment {
             public void onClick(View view) {
                 String etUsernameStr = etUsername.getText().toString();
                 String etPasswordstr = etPassword.getText().toString();
+
+                /*DashboardActivity dashboardActivity = new DashboardActivity();
+                dashboardActivity.updateNotificationBadgeCount(9);*/
+
+                /*sharedPrefManager.addNotificationCount(1);*/
 
                 try {
                     if (requestLogin(etUsernameStr, etPasswordstr).equals(Constants.SUCCESS)) {
@@ -134,8 +142,6 @@ public class LoginFragment extends BaseFragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                /*requestLoginRx();*/
             }
         });
 
@@ -168,42 +174,6 @@ public class LoginFragment extends BaseFragment {
             }
         });
     }
-
-    private Observable<OAuthToken> makeRequestToken() {
-        ApiInterface apiInterfaceRx = RestProvider.getToken().create(ApiInterface.class);
-        String token = null;
-
-        return apiInterfaceRx.requestTokenRx(Constants.HEADER_CLIENT_ID, Constants.HEADER_CLIENT_SECURITY,
-                Constants.HEADER_GRANT_TYPE, Constants.HEADER_SCOPE);
-    }
-
-    private Observable<LoginUserResponse> makeRequestLogin(String loginToken) {
-        String uniqueID = UUID.randomUUID().toString();
-        ApiInterface apiInterfaceRx = RestProvider.getRestLogin().create(ApiInterface.class);
-        String token = sharedPrefManager.getLoginToken();
-
-        return apiInterfaceRx.loginUserRx(uniqueID, Constants.HEADER_AGENT, Constants.HEADER_VERSION, token,
-                new LoginUser("qweasd", "qweasd", Constants.HEADER_CLIENT_ID, Constants.HEADER_CLIENT_SECURITY));
-    }
-
-    private void requestLoginRx() {
-        String uniqueID = UUID.randomUUID().toString();
-
-        /*makeRequestToken()
-                .flatMap(response -> Observable.just(response.getAccessToken()))
-                .flatMapIterable(baseDatas -> baseDatas)
-                .flatMap(new Function<String, ObservableSource<? extends R>>(){
-                })*/
-
-        /*Observable.just(RestProvider.getRestLogin().create(ApiInterface.class)).subscribeOn(Schedulers.computation())
-                .flatMap(s -> {
-                    Observable<OAuthToken> getToken = s.requestTokenRx(Constants.HEADER_CLIENT_ID, Constants.HEADER_CLIENT_SECURITY,
-                            Constants.HEADER_GRANT_TYPE, Constants.HEADER_SCOPE);
-
-                    return makeRequestToken();
-                }).observeOn(AndroidSchedulers.mainThread()).subscribe();*/
-    }
-
 
     public String requestLogin(final String userName, final String password) throws InterruptedException {
         final String[] token = {null};
@@ -260,13 +230,21 @@ public class LoginFragment extends BaseFragment {
         Call<MemberInfoResponse> call = apiInterface.memberInfo(uniqueID, Constants.HEADER_AGENT,
                 Constants.HEADER_VERSION, token);
         Response<MemberInfoResponse> resp = call.execute();
-        Log.d(TAG, "Get Member Info: Response code: " + resp.code());
-        int memberType = resp.body().getResult().get(0).getMemberTypeId();
-        Log.d(TAG, "member info: membertype: " + memberType);
-        String userEmail = resp.body().getResult().get(0).getEmail();
-        Log.d(TAG, "member info: email: " + userEmail);
+        if (resp.code() == 200 && resp.isSuccessful()) {
+            try {
+                Log.d(TAG, "Get Member Info: Response code: " + resp.code());
+                int memberType = resp.body().getResult().get(0).getMemberTypeId();
+                Log.d(TAG, "member info: membertype: " + memberType);
+                String userEmail = resp.body().getResult().get(0).getEmail();
+                Log.d(TAG, "member info: email: " + userEmail);
+                sharedPrefManager.setUserMemberType(memberType);
+                sharedPrefManager.setUserEmail(userEmail);
+                Log.d(TAG, "shared pref: get user email " + sharedPrefManager.getUserEmail());
 
-        sharedPrefManager.setUserMemberType(memberType);
-        sharedPrefManager.setUserEmail(userEmail);
+            } catch (Exception e) {
+                Log.d(TAG, "Exception: " + e);
+                Toast.makeText(getContext(), "Can't get member info", Toast.LENGTH_SHORT);
+            }
+        }
     }
 }

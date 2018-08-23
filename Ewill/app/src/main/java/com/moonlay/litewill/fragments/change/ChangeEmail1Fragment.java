@@ -60,8 +60,8 @@ public class ChangeEmail1Fragment extends BaseFragment {
         btnNext = mView.findViewById(R.id.btn_next);
         sharedPrefManager = new SharedPrefManager(getContext());
 
-        ((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address");
-        ((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((DashboardActivity) getActivity()).setActionBarTitle("Change Email Address");
+        //((DashboardActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initView();
     }
 
